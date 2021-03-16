@@ -11,7 +11,7 @@ export const DropDown = props => {
 					data-toggle="dropdown"
 					aria-haspopup="true"
 					aria-expanded="false">
-					Dropdown button
+					Favorites <span className="badge badge-light">4</span>
 				</button>
 				<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a className="dropdown-item" href="#">

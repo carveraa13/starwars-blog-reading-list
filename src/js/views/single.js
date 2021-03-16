@@ -94,7 +94,7 @@ export const Single = props => {
 
 	if (params.type === "people") {
 		return (
-			<div className="jumbotron text-font-base">
+			<div className="container jumbotron text-font-base">
 				<div className="row row-cols-2">
 					<div className="col-5">
 						<svg
@@ -152,7 +152,7 @@ export const Single = props => {
 		);
 	} else {
 		return (
-			<div className="jumbotron text-font-base">
+			<div className="container jumbotron text-font-base">
 				<div className="row row-cols-2">
 					<div className="col-5">
 						<svg
