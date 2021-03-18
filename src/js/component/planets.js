@@ -1,6 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import PropType from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 let initialPlanet = {
 	properties: {
@@ -29,7 +30,7 @@ export const Planets = props => {
 	};
 
 	const [Planet, setPlanet] = useState(initialPlanet);
-	const [Favorite, setFavorite] = useState(false);
+	const { store, actions } = useContext(Context);
 
 	let URL = "https://www.swapi.tech/api/";
 	let detailURL = "planets/details/" + props.PlanetID;
@@ -80,8 +81,18 @@ export const Planets = props => {
 					<Link to={detailURL} className="btn btn-outline-primary text-primary">
 						Learn more!
 					</Link>
-					<a className="btn btn-outline-warning text-warning float-right" onClick={() => ChangeFavorite()}>
-						{Favorite ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
+					<a
+						className="btn btn-outline-warning text-warning float-right"
+						onClick={() => actions.changeFavoritePlanet(props.PlanetID)}>
+						{store.planetList.map((item, i) => {
+							if (item.uid === props.PlanetID) {
+								if (item.favorite) {
+									return <i className="fas fa-heart" key={i} />;
+								} else {
+									return <i className="far fa-heart" key={i} />;
+								}
+							}
+						})}
 					</a>
 				</div>
 			</div>

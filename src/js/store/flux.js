@@ -25,6 +25,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				setStore({ peopleList: newData });
 			},
+			changeFavoritePlanet: PlanetID => {
+				// 	//get the store
+				const store = getStore();
+				//console.log(PlanetID);
+				const newData = store.planetList.map(item => {
+					if (item.uid === PlanetID) {
+						if (item.favorite) {
+							item.favorite = false;
+						} else {
+							item.favorite = true;
+						}
+						return item;
+					} else {
+						return item;
+					}
+				});
+
+				setStore({ planetList: newData });
+			},
 			loadSomeData: () => {
 				let URL = "https://www.swapi.tech/api/";
 

@@ -8,7 +8,7 @@ export const Navbar = () => {
 		maxHeight: "3rem"
 	};
 	return (
-		<nav className="navbar navbar-light bg-dark mb-3">
+		<nav className="navbar sticky-top navbar-light bg-dark mb-3">
 			<Link to="/">
 				<span className="navbar-brand mb-0 h1 px-5">
 					<img style={styleimg} src={swlogo} />
