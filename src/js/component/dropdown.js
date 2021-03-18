@@ -1,5 +1,6 @@
 import React, { Component, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const DropDown = props => {
 	const { store, actions } = useContext(Context);
@@ -29,16 +30,42 @@ export const DropDown = props => {
 					aria-expanded="false">
 					Favorites <Counter />
 				</button>
-				<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a className="dropdown-item" href="#">
-						Action
-					</a>
-					<a className="dropdown-item" href="#">
-						Another action
-					</a>
-					<a className="dropdown-item" href="#">
-						Something else here
-					</a>
+				<div
+					className="dropdown-menu dropdown-menu-right"
+					aria-labelledby="dropdownMenuButton"
+					style={{ width: "max-content" }}>
+					{store.peopleList.map((item, i) => {
+						if (item.favorite) {
+							return (
+								<div className="row my-0 ml-0 mr-2" key={"people" + i}>
+									<Link to={"/people/details/" + item.uid} replace>
+										<a className="dropdown-item pl-2">{item.name}</a>
+									</Link>
+									<i
+										className="far fa-trash-alt mt-2 ml-auto mr-0"
+										onClick={() => actions.changeFavoritePeople(item.uid)}
+										style={{ cursor: "pointer" }}
+									/>
+								</div>
+							);
+						}
+					})}
+					{store.planetList.map((item, i) => {
+						if (item.favorite) {
+							return (
+								<div className="row my-0 ml-0 mr-2" key={"planet" + i}>
+									<Link to={"/planets/details/" + item.uid} replace>
+										<a className="dropdown-item pl-2">{item.name}</a>
+									</Link>
+									<i
+										className="far fa-trash-alt mt-2  ml-auto mr-0"
+										onClick={() => actions.changeFavoritePlanet(item.uid)}
+										style={{ cursor: "pointer" }}
+									/>
+								</div>
+							);
+						}
+					})}
 				</div>
 			</div>
 		</div>
