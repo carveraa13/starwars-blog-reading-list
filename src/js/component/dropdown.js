@@ -1,6 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
+import { Context } from "../store/appContext";
 
 export const DropDown = props => {
+	const { store, actions } = useContext(Context);
+	const Counter = () => {
+		let x = 0;
+		store.peopleList.forEach(element => {
+			if (element.favorite) {
+				x++;
+			}
+		});
+		store.planetList.forEach(element => {
+			if (element.favorite) {
+				x++;
+			}
+		});
+		return <span className="badge badge-light">{x}</span>;
+	};
 	return (
 		<div className="ml-auto">
 			<div className="dropdown">
@@ -11,7 +27,7 @@ export const DropDown = props => {
 					data-toggle="dropdown"
 					aria-haspopup="true"
 					aria-expanded="false">
-					Favorites <span className="badge badge-light">4</span>
+					Favorites <Counter />
 				</button>
 				<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a className="dropdown-item" href="#">

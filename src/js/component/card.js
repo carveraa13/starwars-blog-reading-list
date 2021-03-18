@@ -1,6 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import PropType from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 let initialPeople = {
 	properties: {
@@ -29,16 +30,16 @@ export const Characters = props => {
 	};
 
 	const [People, setPeople] = useState(initialPeople);
-	const [Favorite, setFavorite] = useState(false);
+	const { store, actions } = useContext(Context);
 
 	let URL = "https://www.swapi.tech/api/";
 	let detailURL = "people/details/" + props.PeopleID;
 
 	async function fnPeople() {
-		// const response = await fetch(URL + "people/" + props.PeopleID)
-		const response = await fetch(
-			"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPeopleDetail.json"
-		)
+		const response = await fetch(URL + "people/" + props.PeopleID)
+			// const response = await fetch(
+			// 	"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPeopleDetail.json"
+			// )
 			.then(res => {
 				if (res.status == 200) {
 					return res.json();
@@ -54,13 +55,6 @@ export const Characters = props => {
 		fnPeople();
 	}, []);
 
-	const ChangeFavorite = () => {
-		if (Favorite) {
-			setFavorite(false);
-		} else {
-			setFavorite(true);
-		}
-	};
 	return (
 		<div className="card m-3" style={cardStyle}>
 			<svg
@@ -87,8 +81,18 @@ export const Characters = props => {
 					<Link to={detailURL} className="btn btn-outline-primary text-primary">
 						Learn more!
 					</Link>
-					<a className="btn btn-outline-warning text-warning float-right" onClick={() => ChangeFavorite()}>
-						{Favorite ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
+					<a
+						className="btn btn-outline-warning text-warning float-right"
+						onClick={() => actions.changeFavoritePeople(props.PeopleID)}>
+						{store.peopleList.map((item, i) => {
+							if (item.uid === props.PeopleID) {
+								if (item.favorite) {
+									return <i className="fas fa-heart" key={i} />;
+								} else {
+									return <i className="far fa-heart" key={i} />;
+								}
+							}
+						})}
 					</a>
 				</div>
 			</div>
@@ -98,29 +102,4 @@ export const Characters = props => {
 
 Characters.propTypes = {
 	PeopleID: PropType.string
-	// 2) add here the new properties into the proptypes object
 };
-
-// export const Characters = props => {
-// 	return (
-// 		<div className="m-3">
-// 			<div className="card">
-// 				<img className="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap" />
-// 				<div className="card-body text-left">
-// 					<h4 className="card-title">title</h4>
-// 					<p className="card-text-wrap">
-// 						<p>Gender: gender</p>
-// 						<p>Hair color: hcolor</p>
-// 						<p>Eye-Color: ecolor</p>
-// 					</p>
-// 					<a href="#!" className="btn btn-primary">
-// 						Learn more!
-// 					</a>
-// 					<button type="button" className="btn btn-outline-primary">
-// 						♡
-// 					</button>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };

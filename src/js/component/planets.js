@@ -35,10 +35,10 @@ export const Planets = props => {
 	let detailURL = "planets/details/" + props.PlanetID;
 
 	async function fnPlanet() {
-		// const response = await fetch(URL + "planets/" + props.PlanetID)
-		const response = await fetch(
-			"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPlanetDetail.json"
-		)
+		const response = await fetch(URL + "planets/" + props.PlanetID)
+			// const response = await fetch(
+			// 	"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPlanetDetail.json"
+			// )
 			.then(res => {
 				if (res.status == 200) {
 					return res.json();
@@ -54,13 +54,6 @@ export const Planets = props => {
 		fnPlanet();
 	}, []);
 
-	const ChangeFavorite = () => {
-		if (Favorite) {
-			setFavorite(false);
-		} else {
-			setFavorite(true);
-		}
-	};
 	return (
 		<div className="card m-3" style={cardStyle}>
 			<svg
@@ -98,5 +91,4 @@ export const Planets = props => {
 
 Planets.propTypes = {
 	PlanetID: PropType.string
-	// 2) add here the new properties into the proptypes object
 };

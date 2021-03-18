@@ -1,28 +1,68 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			peopleList: [],
+			planetList: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			changeFavoritePeople: PersonID => {
+				// 	//get the store
+				const store = getStore();
+				//console.log(PersonID);
+				const newData = store.peopleList.map(item => {
+					if (item.uid === PersonID) {
+						if (item.favorite) {
+							item.favorite = false;
+						} else {
+							item.favorite = true;
+						}
+						return item;
+					} else {
+						return item;
+					}
+				});
+
+				setStore({ peopleList: newData });
 			},
 			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+				let URL = "https://www.swapi.tech/api/";
+
+				async function fnPeopleList() {
+					// const result = await fetch(URL + "people/")
+					const result = await fetch(
+						"https://raw.githubusercontent.com/johmstone/files/main/peopleresponse.json"
+					)
+						.then(res => {
+							if (res.status == 200) {
+								return res.json();
+							}
+						})
+						.then(response => {
+							const newResponse = response.results.map(item => ({ ...item, favorite: false }));
+							setStore({ peopleList: newResponse });
+						})
+						.catch(err => console.error(err));
+				}
+
+				async function fnPLanetsList() {
+					// const result = await fetch(URL + "people/")
+					const result = await fetch(
+						"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPlanets.json"
+					)
+						.then(res => {
+							if (res.status == 200) {
+								return res.json();
+							}
+						})
+						.then(response => {
+							const newResponse = response.results.map(item => ({ ...item, favorite: false }));
+							setStore({ planetList: newResponse });
+						})
+						.catch(err => console.error(err));
+				}
+				fnPeopleList();
+				fnPLanetsList();
 			},
 			changeColor: (index, color) => {
 				//get the store
