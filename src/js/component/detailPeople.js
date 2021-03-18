@@ -75,7 +75,7 @@ export const DetailPeople = props => {
 					</svg>
 				</div>
 				<div className="col-7">
-					<h1 className="text-danger">{People.properties.name}</h1>
+					<h1>{People.properties.name}</h1>
 					<p>
 						Lorem ipsum dolor sit amet consectetur adipiscing elit vehicula, sagittis vestibulum fusce
 						cursus velit class varius, donec a nunc accumsan aptent diam suspendisse. Fringilla quisque
@@ -86,25 +86,25 @@ export const DetailPeople = props => {
 					</p>
 				</div>
 			</div>
-			<hr />
+			<hr className="bg-danger" />
 			<div className="row">
-				<table className="table table-responsive table-borderless">
+				<table className="table table-responsive table-borderless d-flex justify-content-center">
 					<tbody>
 						<tr className="text-danger font-weight-bold">
-							<td>Name</td>
-							<td className="text-center">Birth Year</td>
-							<td className="text-center">Gender</td>
-							<td className="text-center">Height</td>
-							<td className="text-center">Skin Color</td>
-							<td className="text-center">Eye Color</td>
+							<td className="text-danger text-center">Name</td>
+							<td className="text-danger text-center">Birth Year</td>
+							<td className="text-danger text-center">Gender</td>
+							<td className="text-danger text-center">Height</td>
+							<td className="text-danger text-center">Skin Color</td>
+							<td className="text-danger text-center">Eye Color</td>
 						</tr>
 						<tr>
-							<td className="text-center">{People.properties.name}</td>
-							<td className="text-center">{People.properties.birth_year}</td>
-							<td className="text-center">{People.properties.gender}</td>
-							<td className="text-center">{People.properties.height}</td>
-							<td className="text-center">{People.properties.skin_color}</td>
-							<td className="text-center">{People.properties.eye_color}</td>
+							<td className="text-danger text-center">{People.properties.name}</td>
+							<td className="text-danger text-center">{People.properties.birth_year}</td>
+							<td className="text-danger text-center">{People.properties.gender}</td>
+							<td className="text-danger text-center">{People.properties.height}</td>
+							<td className="text-danger text-center">{People.properties.skin_color}</td>
+							<td className="text-danger text-center">{People.properties.eye_color}</td>
 						</tr>
 					</tbody>
 				</table>

@@ -75,7 +75,7 @@ export const DetailPlanet = props => {
 					</svg>
 				</div>
 				<div className="col-7">
-					<h1 className="text-danger">{Planet.properties.name}</h1>
+					<h1>{Planet.properties.name}</h1>
 					<p>
 						Lorem ipsum dolor sit amet consectetur adipiscing elit vehicula, sagittis vestibulum fusce
 						cursus velit class varius, donec a nunc accumsan aptent diam suspendisse. Fringilla quisque
@@ -86,25 +86,25 @@ export const DetailPlanet = props => {
 					</p>
 				</div>
 			</div>
-			<hr />
+			<hr className="bg-danger" />
 			<div className="row">
-				<table className="table table-responsive table-borderless">
+				<table className="table table-responsive table-borderless d-flex justify-content-center">
 					<tbody>
 						<tr className="text-danger font-weight-bold">
-							<td>Name</td>
-							<td className="text-center">Climate</td>
-							<td className="text-center">Population</td>
-							<td className="text-center">Orbital Period</td>
-							<td className="text-center">Rotation Period</td>
-							<td className="text-center">Diameter</td>
+							<td className="text-danger text-center">Name</td>
+							<td className="text-danger text-center">Climate</td>
+							<td className="text-danger text-center">Population</td>
+							<td className="text-danger text-center">Orbital Period</td>
+							<td className="text-danger text-center">Rotation Period</td>
+							<td className="text-danger text-center">Diameter</td>
 						</tr>
 						<tr>
-							<td className="text-center">{Planet.properties.name}</td>
-							<td className="text-center">{Planet.properties.climate}</td>
-							<td className="text-center">{Planet.properties.population}</td>
-							<td className="text-center">{Planet.properties.orbital_period}</td>
-							<td className="text-center">{Planet.properties.rotation_period}</td>
-							<td className="text-center">{Planet.properties.diameter}</td>
+							<td className="text-danger text-center">{Planet.properties.name}</td>
+							<td className="text-danger text-center">{Planet.properties.climate}</td>
+							<td className="text-danger text-center">{Planet.properties.population}</td>
+							<td className="text-danger text-center">{Planet.properties.orbital_period}</td>
+							<td className="text-danger text-center">{Planet.properties.rotation_period}</td>
+							<td className="text-danger text-center">{Planet.properties.diameter}</td>
 						</tr>
 					</tbody>
 				</table>
