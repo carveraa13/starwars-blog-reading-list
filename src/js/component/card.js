@@ -37,9 +37,6 @@ export const Characters = props => {
 
 	async function fnPeople() {
 		const response = await fetch(URL + "people/" + props.PeopleID)
-			// const response = await fetch(
-			// 	"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPeopleDetail.json"
-			// )
 			.then(res => {
 				if (res.status == 200) {
 					return res.json();

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 export const DropDown = props => {
 	const { store, actions } = useContext(Context);
+	let x = 0;
 	const Counter = () => {
-		let x = 0;
 		store.peopleList.forEach(element => {
 			if (element.favorite) {
 				x++;
@@ -18,22 +18,17 @@ export const DropDown = props => {
 		});
 		return <span className="badge badge-light">{x}</span>;
 	};
-	return (
-		<div className="ml-auto">
-			<div className="dropdown">
-				<button
-					className="btn btn-secondary dropdown-toggle"
-					type="button"
-					id="dropdownMenuButton"
-					data-toggle="dropdown"
-					aria-haspopup="true"
-					aria-expanded="false">
-					Favorites <Counter />
-				</button>
-				<div
-					className="dropdown-menu dropdown-menu-right"
-					aria-labelledby="dropdownMenuButton"
-					style={{ width: "max-content" }}>
+
+	const Drop = () => {
+		if (x == 0) {
+			return (
+				<div className="row my-0 ml-0 mr-2 text-center">
+					<span className="dropdown-item">(Empty)</span>
+				</div>
+			);
+		} else {
+			return (
+				<div>
 					{store.peopleList.map((item, i) => {
 						if (item.favorite) {
 							return (
@@ -66,6 +61,27 @@ export const DropDown = props => {
 							);
 						}
 					})}
+				</div>
+			);
+		}
+	};
+	return (
+		<div className="ml-auto">
+			<div className="dropdown">
+				<button
+					className="btn btn-secondary dropdown-toggle"
+					type="button"
+					id="dropdownMenuButton"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false">
+					Favorites <Counter />
+				</button>
+				<div
+					className="dropdown-menu dropdown-menu-right"
+					aria-labelledby="dropdownMenuButton"
+					style={{ width: "max-content" }}>
+					<Drop />
 				</div>
 			</div>
 		</div>
